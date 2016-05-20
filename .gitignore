@@ -1,0 +1,8 @@
+.cache
+.tox
+.venv
+.coverage
+*.egg-info
+*.pyc
+__pyche__
+dist
