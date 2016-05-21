@@ -6,3 +6,4 @@
 *.pyc
 __pyche__
 dist
+.DS_store
