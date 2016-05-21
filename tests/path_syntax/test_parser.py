@@ -4,7 +4,7 @@ Based on:
 https://github.com/Netflix/falcor-path-syntax/blob/master/test/parse-tree/parser.spec.js
 """
 
-from falcor import parser
+from falcor.path_syntax import parser
 
 
 def test_parse_a_simple_key_string():

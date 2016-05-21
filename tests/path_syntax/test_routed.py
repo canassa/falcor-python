@@ -1,4 +1,4 @@
-from falcor import parser
+from falcor.path_syntax import parser
 
 
 def test_should_create_a_routed_token_for_the_path():

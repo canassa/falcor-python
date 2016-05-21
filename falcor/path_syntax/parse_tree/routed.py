@@ -1,6 +1,6 @@
-from falcor.routed_tokens import ROUTED_TOKENS
-from falcor.token_types import TOKEN_TYPES
-from falcor import exceptions
+from falcor.path_syntax.routed_tokens import ROUTED_TOKENS
+from falcor.path_syntax.token_types import TOKEN_TYPES
+from falcor.path_syntax import exceptions
 
 
 def routed(tokenizer, openingToken, state, out):

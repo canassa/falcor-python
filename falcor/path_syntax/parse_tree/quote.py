@@ -1,5 +1,5 @@
-from falcor.token_types import TOKEN_TYPES
-from falcor import exceptions
+from falcor.path_syntax.token_types import TOKEN_TYPES
+from falcor.path_syntax import exceptions
 
 
 def quote(tokenizer, openingToken, state, out):

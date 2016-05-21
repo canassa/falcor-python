@@ -1,6 +1,6 @@
-from falcor.tokenizer import Tokenizer
-from falcor.token_types import TOKEN_TYPES
-from falcor import exceptions
+from falcor.path_syntax.tokenizer import Tokenizer
+from falcor.path_syntax.token_types import TOKEN_TYPES
+from falcor.path_syntax import exceptions
 
 
 def _range(tokenizer, openingToken, state, out):

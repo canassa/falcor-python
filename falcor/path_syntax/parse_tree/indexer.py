@@ -1,9 +1,9 @@
-from falcor.token_types import TOKEN_TYPES
+from falcor.path_syntax.token_types import TOKEN_TYPES
 
-from falcor.parse_tree.range import _range
-from falcor.parse_tree.quote import quote
-from falcor.parse_tree.routed import routed
-from falcor import exceptions
+from falcor.path_syntax.parse_tree.range import _range
+from falcor.path_syntax.parse_tree.quote import quote
+from falcor.path_syntax.parse_tree.routed import routed
+from falcor.path_syntax import exceptions
 
 # var idxE = E.indexer
 

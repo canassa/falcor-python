@@ -3,7 +3,7 @@ Based on:
 
 https://github.com/Netflix/falcor-path-syntax/blob/master/src/tokenizer/index.js
 """
-from falcor.token_types import TOKEN_TYPES
+from falcor.path_syntax.token_types import TOKEN_TYPES
 
 
 DOT_SEPARATOR = '.'

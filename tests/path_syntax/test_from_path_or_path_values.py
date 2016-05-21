@@ -1,4 +1,4 @@
-from falcor import from_paths_or_path_values
+from falcor.path_syntax import from_paths_or_path_values
 
 
 def test_convert_a_string_to_path():

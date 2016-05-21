@@ -1,6 +1,6 @@
-from falcor.token_types import TOKEN_TYPES
-from falcor.parse_tree.indexer import indexer
-from falcor import exceptions
+from falcor.path_syntax.token_types import TOKEN_TYPES
+from falcor.path_syntax.parse_tree.indexer import indexer
+from falcor.path_syntax import exceptions
 
 
 def head(tokenizer):
