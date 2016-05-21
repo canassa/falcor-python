@@ -40,10 +40,6 @@ class Invalid(Exception):
     'Invalid routed token.  only integers|ranges|keys are supported.'
 
 
-# class Empty(Exception):
-#     'cannot have empty quoted keys.',
-
-
 class IllegalEscape(Exception):
     'Invalid escape character.  Only quotes are escapable.'
 

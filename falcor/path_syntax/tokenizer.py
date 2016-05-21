@@ -29,37 +29,37 @@ class Tokenizer:
         self._string = string
         self._idx = -1
         self._extended = ext
-        self.parseString = ''
-        self._nextToken = None
+        self.parse_string = ''
+        self._next_token = None
 
     def next(self):
         """
         grabs the next token either from the peek operation or generates the
         next token.
         """
-        nextToken = self._nextToken or getNext(self._string, self._idx, self._extended)
+        next_token = self._next_token or get_next(self._string, self._idx, self._extended)
 
-        self._idx = nextToken['idx']
-        self._nextToken = False
-        self.parseString += str(nextToken['token'].get('token'))
+        self._idx = next_token['idx']
+        self._next_token = False
+        self.parse_string += str(next_token['token'].get('token'))
 
-        return nextToken['token']
+        return next_token['token']
 
     def peek(self):
         """
         will peak but not increment the tokenizer
         """
-        nextToken = self._nextToken or getNext(self._string, self._idx, self._extended)
-        self._nextToken = nextToken
+        next_token = self._next_token or get_next(self._string, self._idx, self._extended)
+        self._next_token = next_token
 
-        return nextToken['token']
+        return next_token['token']
 
     @classmethod
-    def toNumber(cls, x):
+    def to_number(cls, x):
         return int(x)
 
 
-def toOutput(token, _type, done):
+def to_output(token, _type, done):
     return {
         'token': token,
         'done': done,
@@ -67,10 +67,10 @@ def toOutput(token, _type, done):
     }
 
 
-def getNext(string, idx, ext):
+def get_next(string, idx, ext):
     output = False
     token = ''
-    specialChars = EXT_SPECIAL_CHARACTERS if ext else SPECIAL_CHARACTERS
+    special_chars = EXT_SPECIAL_CHARACTERS if ext else SPECIAL_CHARACTERS
     done = None
 
     while not done:
@@ -81,7 +81,7 @@ def getNext(string, idx, ext):
         # we have to peek at the next token
         character = string[idx + 1]
 
-        if character not in specialChars:
+        if character not in special_chars:
             token += character
             idx += 1
             continue
@@ -109,11 +109,11 @@ def getNext(string, idx, ext):
         }
 
         _type = MAP.get(character, TOKEN_TYPES['unknown'])
-        output = toOutput(character, _type, False)
+        output = to_output(character, _type, False)
         break
 
     if not output and len(token):
-        output = toOutput(token, TOKEN_TYPES['token'], False)
+        output = to_output(token, TOKEN_TYPES['token'], False)
 
     if not output:
         output = {'done': True}

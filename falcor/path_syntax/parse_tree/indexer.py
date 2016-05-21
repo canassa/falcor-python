@@ -16,8 +16,8 @@ def indexer(tokenizer, opening_token, state, out):
 
     token = tokenizer.next()
     done = False
-    allowedMaxLength = 1
-    routedIndexer = False
+    allowed_max_length = 1
+    routed_indexer = False
 
     # State variables
     state['indexer'] = []
@@ -26,12 +26,12 @@ def indexer(tokenizer, opening_token, state, out):
 
         if token['type'] in {TOKEN_TYPES['token'], TOKEN_TYPES['quote']}:
             # ensures that token adders are properly delimited.
-            if len(state['indexer']) == allowedMaxLength:
-                raise exceptions.requiresComma(tokenizer)
+            if len(state['indexer']) == allowed_max_length:
+                raise exceptions.RequiresComma(tokenizer)
 
         # Extended syntax case
         if token['type'] == TOKEN_TYPES['openingBrace']:
-            routedIndexer = True
+            routed_indexer = True
             routed(tokenizer, token, state, out)
 
         elif token['type'] == TOKEN_TYPES['token']:
@@ -44,7 +44,7 @@ def indexer(tokenizer, opening_token, state, out):
         # dotSeparators at the top level have no meaning
         elif token['type'] == TOKEN_TYPES['dotSeparator']:
             if not len(state['indexer']):
-                raise exceptions.leadingDot(tokenizer)
+                raise exceptions.LeadingDot(tokenizer)
             _range(tokenizer, token, state, out)
 
         # Spaces do nothing.
@@ -60,13 +60,13 @@ def indexer(tokenizer, opening_token, state, out):
 
         # Its time to decend the parse tree.
         elif token['type'] == TOKEN_TYPES['openingBracket']:
-            raise exceptions.nested(tokenizer)
+            raise exceptions.Nested(tokenizer)
 
         elif token['type'] == TOKEN_TYPES['commaSeparator']:
-            allowedMaxLength += 1
+            allowed_max_length += 1
 
         else:
-            raise exceptions.unexpectedToken(tokenizer)
+            raise exceptions.UnexpectedToken(tokenizer)
 
         # If done, leave loop
         if done:
@@ -76,10 +76,10 @@ def indexer(tokenizer, opening_token, state, out):
         token = tokenizer.next()
 
     if len(state['indexer']) == 0:
-        raise exceptions.empty(tokenizer)
+        raise exceptions.Empty(tokenizer)
 
-    if len(state['indexer']) > 1 and routedIndexer:
-        raise exceptions.routedTokens(tokenizer)
+    if len(state['indexer']) > 1 and routed_indexer:
+        raise exceptions.RoutedTokens(tokenizer)
 
     # Remember, if an array of 1, keySets will be generated.
     if len(state['indexer']) == 1:

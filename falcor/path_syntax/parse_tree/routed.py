@@ -3,20 +3,22 @@ from falcor.path_syntax.token_types import TOKEN_TYPES
 from falcor.path_syntax import exceptions
 
 
-def routed(tokenizer, openingToken, state, out):
+def routed(tokenizer, opening_token, state, out):
     """
     The routing logic.
 
     parse-tree:
     <opening-brace><routed-token>(:<token>)<closing-brace>
+
+    FIXME: ``opening_token`` and ``out`` arguments not used.
     """
 
-    routeToken = tokenizer.next()
+    route_token = tokenizer.next()
     named = False
     name = ''
 
     # ensure the routed token is a valid ident.
-    if routeToken['token'] not in {
+    if route_token['token'] not in {
             ROUTED_TOKENS['integers'],
             ROUTED_TOKENS['ranges'],
             ROUTED_TOKENS['keys']}:
@@ -49,12 +51,12 @@ def routed(tokenizer, openingToken, state, out):
 
     # must close with a brace.
     if _next['type'] == TOKEN_TYPES['closingBrace']:
-        outputToken = {
-            'type': routeToken['token'],
+        output_token = {
+            'type': route_token['token'],
             'named': named,
             'name': name,
         }
-        state['indexer'].append(outputToken)
+        state['indexer'].append(output_token)
     # closing brace expected
     else:
         raise exceptions.Invalid(tokenizer)
